@@ -6,7 +6,7 @@
 #    By: seciurte <seciurte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 19:08:09 by seciurte          #+#    #+#              #
-#    Updated: 2020/11/26 20:03:27 by seciurte         ###   ########.fr        #
+#    Updated: 2021/04/09 13:49:13 by seciurte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRC	= 		ft_atoi.c\
 			ft_isascii.c\
 			ft_isdigit.c\
 			ft_isprint.c\
+			ft_isspace.c\
+			ft_itoa_base.c\
 			ft_itoa.c\
 			ft_memccpy.c\
 			ft_memchr.c\

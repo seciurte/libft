@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seciurte <seciurte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 12:06:43 by seciurte          #+#    #+#             */
-/*   Updated: 2021/04/01 19:45:52 by seciurte         ###   ########.fr       */
+/*   Created: 2021/04/06 15:44:57 by seciurte          #+#    #+#             */
+/*   Updated: 2021/04/06 16:18:59 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_isspace(int c)
 {
-	unsigned char	*dst;
-
-	dst = s;
-	while (n--)
-	{
-		*dst = (unsigned char)c;
-		dst++;
-	}
-	return (s);
+	return ((c >= 9 && c <= 13) || c == 32);
 }
