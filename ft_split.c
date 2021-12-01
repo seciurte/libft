@@ -5,12 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seciurte <seciurte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 10:36:33 by seciurte          #+#    #+#             */
-/*   Updated: 2021/04/01 18:47:23 by seciurte         ###   ########.fr       */
+/*   Created: 2021/11/30 18:32:06 by seciurte          #+#    #+#             */
+/*   Updated: 2021/12/01 15:54:44 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	*free_all(char **split)
+{
+	int		i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+	return (NULL);
+}
 
 static size_t	cnt_wrds(char const *s, char c)
 {
@@ -43,31 +57,47 @@ static size_t	wrdlen(char const *s, char c)
 	return (len);
 }
 
+static char	**set_all(char const *s, char c)
+{
+	char	**split;
+	int		i;
+
+	i = cnt_wrds(s, c);
+	split = malloc(sizeof(char **) * (i + 1));
+	if (split == NULL)
+		return (NULL);
+	while (i >= 0)
+	{
+		split[i] = NULL;
+		i--;
+	}
+	return (split);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char	**str;
-	size_t	l_stc;
-	size_t	l_wrd;
+	int		i;
+	int		j;
+	char	**split;
 
-	l_stc = cnt_wrds(s, c) + 1;
-	str = malloc(sizeof(char **) * l_stc);
-	if (str == NULL)
+	split = set_all(s, c);
+	if (split == NULL)
 		return (NULL);
-	while (s != NULL && *s)
+	i = 0;
+	j = 0;
+	while (s != NULL && s[i])
 	{
-		if (*s != c)
+		if (s[i] != c)
 		{
-			l_wrd = wrdlen(s, c) + 1;
-			*str = malloc(sizeof(char) * l_wrd);
-			if (str == NULL)
-				return (NULL);
-			ft_strlcpy(*str, s, l_wrd);
-			s += l_wrd - 1;
-			str++;
+			split[j] = malloc(sizeof(char *) * wrdlen(&s[i], c) + 1);
+			if (split[j] == NULL)
+				return (free_all(split));
+			ft_strlcpy(split[j], &s[i], wrdlen(&s[i], c) + 1);
+			i += wrdlen(&s[i], c);
+			j++;
 		}
 		else
-			s++;
+			i++;
 	}
-	*str = NULL;
-	return (str - l_stc + 1);
+	return (split);
 }
