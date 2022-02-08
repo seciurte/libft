@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-static int	nbr_len(long long n, int base_len)
+static int	nbr_len(int n, int base_len)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ static int	nbr_len(long long n, int base_len)
 	return (i);
 }
 
-char	*ft_itoa_base(long long n, char *base)
+char	*ft_itoa_base(int n, char *base)
 {
 	char		*str;
 	int			n_len;
